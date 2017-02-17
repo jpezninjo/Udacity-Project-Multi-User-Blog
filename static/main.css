@@ -1,0 +1,139 @@
+body {
+    position: relative;
+    font-family: 'Open Sans', sans-serif, Arial;
+    font-size: 14px;
+
+    background-image: url('http://i.imgur.com/JNS0yFE.png');
+
+    width: 960px;
+    margin: 0 auto;
+    padding: 10px;
+    color: #333;
+}
+
+.login-area {
+    font-size: 16px;
+    color: black;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.login-link, .login-link:visited {
+    color: black;
+    text-decoration: none;
+}
+
+.login-link:hover {
+    text-decoration: underline;
+}
+
+h2 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.error {
+    color: red;
+}
+
+label {
+  display: block;
+  font-size: 20px;
+}
+
+label + label {
+    margin-top: 20px;
+}
+
+input[type=text].newpost-subject {
+    width: 500px;
+    font-size: 20px;
+    padding: 2px;
+    font-family: monospace;
+}
+
+textarea {
+  width: 500px;
+  height: 400px;
+  font-size: 17px;
+  font-family: monospace;
+}
+
+input[type=submit] {
+  font-size: 24px;
+}
+
+p.main-title-p{
+    padding-top: 8px;
+}
+
+.main-title {
+    display: block;
+    color: #2c3e50;
+    font-size: 40px;
+    font-weight: bold;
+    font-style: italic;
+    text-align: center;
+    margin-bottom: 30px;
+    text-decoration: none;
+}
+
+.post + .post {
+    margin-top: 15px;
+}
+
+.post-heading {
+    position: relative;
+    border-bottom: 3px solid #666;
+}
+
+.post-title {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.post-title > a, .post-title > a:after, .post-title > a:visited{
+    color: #2980b9;
+    text-decoration: none;
+}
+
+.post-title span{
+    font-size: 18px;
+    padding-left: 2.5px;
+}
+
+.post-date {
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+    color: black;
+
+}
+
+div.post-content {
+    /*background: #bdc3c7;*/
+    margin-top: 5px;
+    overflow: hidden;
+    word-wrap: break-word
+}
+
+p.post-content{
+    background: white;
+    max-height: 450px;
+    overflow-y: scroll;
+    padding: 5px 15px;
+}
+
+div.comments-container{
+    background: #bdc3c7;
+    border-radius: 5px 0 0 5px;
+    max-height: 240px;
+    overflow-y: scroll;
+}
+
+p.comment{
+    background: #ecf0f1;
+    padding: 5px;
+}

@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block content %}
+    <link type="text/css" rel="stylesheet" href="/static/forms.css" />
+    <h2>Warning: deleting post</h2>
+    <form method="post">
+      <p><h4>{{content}}</h4></p>
+      <input type="submit" value="Yes">
+    </form>
+    <a href="/blog/delete/redirect"><button>On second thought, take me home</button></a>
+  </body>
+{% endblock %}

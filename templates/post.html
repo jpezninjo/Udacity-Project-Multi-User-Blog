@@ -1,0 +1,65 @@
+<div class="post">
+  <div class="post-heading">
+    <div class="post-title">
+      {% if link_to_self %}
+      <a href={{"./blog/" + p.id}}>{{p.subject}}</a>
+      {%else%}
+      {{p.subject}}
+      {% endif %}
+      <span>by {{p.owner}}</span>
+    </div>
+
+    <div class="post-date">
+      {{p.created.strftime("%b %d, %Y")}}
+    </div>
+  </div>
+
+  <div class="post-content">
+    <p class="post-content">
+      {{p._render_text | safe}}
+    </p>
+  </div>
+  <form method="get">
+    <a href={{"/blog/edit/" + p.id}}>Edit post</a>
+    <a href={{"/blog/delete/" + p.id}}>Delete post</a>
+    <a href={{"/blog/upvote/" + p.id}}>Upvote</a>
+    <a href={{"/blog/downvote/" + p.id}}>Downvote</a>
+  </form>
+
+  {% if user %}      
+  {% else %}
+  {% endif %}
+  
+  Upvotes={{upvotes}}
+  <br>
+  Downvotes={{downvotes}}
+  
+  <br>
+  <br>
+  <h2>Comments</h2>
+  <div class="comments-container">
+  {% for c in p.post_comments.order('-created') %}
+    <p class="comment">
+      {{c.owner ~ '"' ~ c.content ~ '"'}}
+      <a href={{'/blog/' + p.id + '/comment/delete/' ~ c.key().id()}}>Delete this comment</a>
+    </p>
+  {% endfor %}
+  </div>
+  <br>
+  <br>
+  <form method="post" action={{"/blog/" + p.id + "/comment/new"}}>
+
+    <label>
+      <div>Leave a comment</div>
+      <textarea name="content" style="max-height: 50px">{{content}}</textarea>
+    </label>
+
+    <label style="font-size: 14px; margin: 5px 0 20px 0;"><input type="checkbox" name="checkbox" value="value">Post anonymous</label>
+
+    <div class="error">{{error}}</div>
+
+    <input type="submit" value="Comment" style="font-size: 14px;">
+  </form>
+
+
+</div>
