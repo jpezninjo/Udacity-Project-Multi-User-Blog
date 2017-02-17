@@ -2,6 +2,11 @@
 
 {% block content %}
 	<h2>{{content}}</h2>
+<<<<<<< HEAD
+	<button><a href={{"/blog/" ~ post_id}}>Take me back</a></button>
+
+  	<h4>You may need to refresh the page for comment changes</h4>
+=======
   	<button onclick="goBack()">Take me back</button>
 
   	<h4>You may need to refresh the page for comment changes</h4>
@@ -11,4 +16,5 @@
 	 	   window.history.back();
 		}
 	</script>
+>>>>>>> be9506414feabe530acffca5b5b6868bd62df5de
 {% endblock %}

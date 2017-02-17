@@ -3,6 +3,22 @@
 <head>
   <link type="text/css" rel="stylesheet" href="/static/main.css" />
   <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+<<<<<<< HEAD
+  <link rel="shortcut icon" type="image/png" href="https://i.imgur.com/XMpGtNC.png"/>
+  <link type="text/css" rel="stylesheet" href="/static/bootstrap/css/bootstrap.min.css" />
+  <link type="text/css" rel="stylesheet" href="/static/bootstrap/css/bootstrap-theme.css" />
+  
+  <title>My Multi-User Blog</title>
+</head>
+
+<body>
+<div class="container">
+  <div class="login-area">
+    {% if user %}
+      Hi, {{user.name}} (<a class="login-link" href="/logout">logout</a>)
+      <br>
+      <a href="/blog/newpost">Submit a new post</a>
+=======
 
   <title>CS 253 Blog</title>
 </head>
@@ -12,6 +28,7 @@
   <div class="login-area">
     {% if user %}
       Hi, {{user.name}} (<a class="login-link" href="/logout">logout</a>)
+>>>>>>> be9506414feabe530acffca5b5b6868bd62df5de
     {% else %}
       <a class="login-link" href="/login">login</a>
       |
@@ -29,6 +46,10 @@
   {% block content %}
   {% endblock %}
   </div>
+<<<<<<< HEAD
+  </div>
+=======
+>>>>>>> be9506414feabe530acffca5b5b6868bd62df5de
 </body>
 
 </html>

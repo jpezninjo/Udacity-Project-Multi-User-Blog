@@ -4,7 +4,11 @@
       {% if link_to_self %}
       <a href={{"./blog/" + p.id}}>{{p.subject}}</a>
       {%else%}
+<<<<<<< HEAD
+      <span class="post-title">{{p.subject}}</span>
+=======
       {{p.subject}}
+>>>>>>> be9506414feabe530acffca5b5b6868bd62df5de
       {% endif %}
       <span>by {{p.owner}}</span>
     </div>
@@ -18,21 +22,38 @@
     <p class="post-content">
       {{p._render_text | safe}}
     </p>
+<<<<<<< HEAD
+  
+  <form method="get">
+    <a href={{"/blog/edit/" + p.id}}>Edit post<span class="glyphicon glyphicon-pencil"></span></a>
+    <a href={{"/blog/delete/" + p.id}}>Delete post<span class="glyphicon glyphicon-trash"></span></a>
+    <a href={{"/blog/upvote/" + p.id}}>Upvote<span class="glyphicon glyphicon-thumbs-up"></span></a>
+    <a href={{"/blog/downvote/" + p.id}}>Downvote<span class="glyphicon glyphicon-thumbs-down"></span></a>
+=======
   </div>
   <form method="get">
     <a href={{"/blog/edit/" + p.id}}>Edit post</a>
     <a href={{"/blog/delete/" + p.id}}>Delete post</a>
     <a href={{"/blog/upvote/" + p.id}}>Upvote</a>
     <a href={{"/blog/downvote/" + p.id}}>Downvote</a>
+>>>>>>> be9506414feabe530acffca5b5b6868bd62df5de
   </form>
 
   {% if user %}      
   {% else %}
   {% endif %}
   
+<<<<<<< HEAD
+  {{upvotes}}
+  Upvotes
+  <br>
+  {{downvotes}}
+  Downvotes
+=======
   Upvotes={{upvotes}}
   <br>
   Downvotes={{downvotes}}
+>>>>>>> be9506414feabe530acffca5b5b6868bd62df5de
   
   <br>
   <br>
@@ -45,8 +66,21 @@
       <p class="comment">
         <span>
           <span class="name">{{c.owner}}</span>{{' commented "' ~ c.content ~ '"'}}
+<<<<<<< HEAD
+
+          <a href={{'/blog/' + p.id + '/comment/delete/' ~ c.key().id()}}>
+            Delete
+            <span class="glyphicon glyphicon-erase"></span>
+          </a>
+          <a href={{'/blog/' + p.id + '/comment/edit/' ~ c.key().id()}}>
+            Edit
+            <span class="glyphicon glyphicon-pencil"></span>
+          </a>
+
+=======
           <a href={{'/blog/' + p.id + '/comment/delete/' ~ c.key().id()}}>Delete comment</a>
           <a href={{'/blog/' + p.id + '/comment/edit/' ~ c.key().id()}}>Edit comment</a>
+>>>>>>> be9506414feabe530acffca5b5b6868bd62df5de
         </span>
       </p>
     {% endfor %}
@@ -69,6 +103,10 @@
 
     <input type="submit" value="Comment" style="font-size: 14px;">
   </form>
+<<<<<<< HEAD
+  </div>
+=======
 
+>>>>>>> be9506414feabe530acffca5b5b6868bd62df5de
 
 </div>

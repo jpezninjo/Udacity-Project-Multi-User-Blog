@@ -1,6 +1,20 @@
 .label {
+<<<<<<< HEAD
+	padding: 0 15px;
+    text-align: right;
+=======
     text-align: right
+>>>>>>> be9506414feabe530acffca5b5b6868bd62df5de
 }
 .error {
     color: red
 }
+<<<<<<< HEAD
+
+
+input[type=submit]{
+	margin-left: 175px;
+	margin-top: 12px;
+}
+=======
+>>>>>>> be9506414feabe530acffca5b5b6868bd62df5de

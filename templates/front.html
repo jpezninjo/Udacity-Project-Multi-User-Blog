@@ -1,7 +1,10 @@
 {% extends "base.html" %}
 
 {% block content %}
+<<<<<<< HEAD
+=======
 	<a href="/blog/newpost">Submit a new post</a>
+>>>>>>> be9506414feabe530acffca5b5b6868bd62df5de
   {% for p in posts %}
 	<!-- {{ p.render_properties() | safe }} -->
     {{ p.render(link_to_self = True) | safe }}
