@@ -31,13 +31,13 @@ We freaking cheated by keeping all our code in a folder called hw4 (lol) and cal
 
 
 ###Directory structure
-  -static
-      css files
-  -templates
-       html forms
-  app.yaml
-  blog.py
-  other stuff not as important
+  *-static
+  *   css files
+  *-templates
+  *     html forms
+  *app.yaml
+  *blog.py
+  *other stuff not as important
   
   
 ###app.yaml
