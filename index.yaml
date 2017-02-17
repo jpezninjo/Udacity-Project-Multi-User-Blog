@@ -15,18 +15,3 @@ indexes:
   - name: post
   - name: created
     direction: desc
-<<<<<<< HEAD
-=======
-
-- kind: Post
-  ancestor: yes
-  properties:
-  - name: created
-    direction: desc
-
-- kind: Post
-  ancestor: yes
-  properties:
-  - name: date
-    direction: desc
->>>>>>> be9506414feabe530acffca5b5b6868bd62df5de
