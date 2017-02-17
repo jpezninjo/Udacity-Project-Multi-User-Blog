@@ -119,21 +119,32 @@ div.post-content {
     word-wrap: break-word
 }
 
+p.post-content, div.comments-container{
+    /*overflow-y: scroll;*/
+}
+
 p.post-content{
-    background: white;
+    background: #/*2980b9*/;
     max-height: 450px;
-    overflow-y: scroll;
     padding: 5px 15px;
 }
 
 div.comments-container{
-    background: #bdc3c7;
+    /*background: #ecf0f1;*/
     border-radius: 5px 0 0 5px;
     max-height: 240px;
-    overflow-y: scroll;
 }
 
 p.comment{
-    background: #ecf0f1;
     padding: 5px;
+}
+
+p.comment > span{
+    background: white;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+p.comment span.name{
+    color: #167AC6;
 }

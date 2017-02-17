@@ -167,7 +167,9 @@ class Comment(db.Model):
     def getID(self):
         return str(self.key().id())
 
-
+    @classmethod
+    def by_id(cls, uid):
+        return Comment.get_by_id(uid, parent = comment_key())
 
 
 
@@ -203,30 +205,20 @@ class NewPost(BlogHandler):
             self.redirect('/blog')
 
         subject = self.request.get('subject')
-        user = self.user.name
+        anonymous = self.request.get('anonymous')
+        username = self.user.name
+        if anonymous:
+            username = anonymous
         # self.read_secure_cookie("user")
         content = self.request.get('content')
 
         if subject and content:
-            p = Post(parent = blog_key(), subject = subject, owner = user, user_upvotes="", user_downvotes="", content = content)
+            p = Post(parent = blog_key(), subject = subject, owner = username, user_upvotes="", user_downvotes="", content = content)
             p.put()
             self.redirect('/blog/%s' % str(p.key().id()))
         else:
             error = "subject and content, please!"
             self.render("newpost.html", subject=subject, content=content, error=error)
-
-class Rot13(BlogHandler):
-    def get(self):
-        self.render('rot13-form.html')
-
-    def post(self):
-        rot13 = ''
-        text = self.request.get('text')
-        if text:
-            rot13 = text.encode('rot13')
-
-        self.render('rot13-form.html', text = rot13)
-
 
 USER_CHAR_RE = re.compile(r"^[a-zA-Z0-9]+")
 def valid_username_chars(username):
@@ -465,27 +457,52 @@ class NewComment(BlogHandler):
 
         uid = self.read_secure_cookie('user_id')
         user = User.by_id(int(uid))
+
+        anonymous = self.request.get('anonymous')
         username = user.name
+        if anonymous:
+            username = anonymous
+
         content = self.request.get('content')
 
         comment = Comment(parent = comment_key(), owner = username, content = content, post = post)
         comment.put()
-        self.render("newcomment-redirect.html", link = "/blog/" + post_id)
+        self.render("newcomment-redirect.html", content = "Thank you for your comment!")
 
 class EditComment(BlogHandler):
-    def get(self, post_id):
-        return
+    def get(self, post_id, comment_id):
+        #Get post by post_id
+        key = db.Key.from_path('comments', int(comment_id), parent=comment_key())
+        comment = db.get(key)
+        comment = Comment.by_id(int(comment_id))
+        if not comment:
+            self.error(404)
+            return
+        self.render('edit-post.html', content = comment.content, error="", comment=True)
+
+    def post(self, post_id, comment_id):
+        key = db.Key.from_path('comments', int(comment_id), parent=comment_key())
+        comment = db.get(key)
+        
+        content = self.request.get('content')
+        comment.content = content
+        comment.put()
+        self.render("newcomment-redirect.html", content="Your comment has been edited.")
+        # self.redirect("/blog/" + post_id)
 
 class DeleteComment(BlogHandler):
     def get(self, post_id, comment_id):
         key = db.Key.from_path('comments', int(comment_id), parent=comment_key())
         comment = db.get(key)
-        if comment:
-            comment.delete();
-        self.redirect("/blog/" + post_id)
+        comment = Comment.by_id(int(comment_id))
+        if not comment:
+            self.error(404)
+            return
+        comment.delete();
+        self.render("newcomment-redirect.html", content="Your comment has been deleted.")
+        # self.redirect("/blog/" + post_id)
 
 app = webapp2.WSGIApplication([('/', BlogFront),
-                               ('/rot13', Rot13),
                                ('/welcome', Welcome),
                                ('/blog/?', BlogFront),
                                ('/blog/([0-9]+)', PostPage),

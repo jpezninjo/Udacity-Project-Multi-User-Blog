@@ -38,12 +38,21 @@
   <br>
   <h2>Comments</h2>
   <div class="comments-container">
-  {% for c in p.post_comments.order('-created') %}
-    <p class="comment">
-      {{c.owner ~ '"' ~ c.content ~ '"'}}
-      <a href={{'/blog/' + p.id + '/comment/delete/' ~ c.key().id()}}>Delete this comment</a>
-    </p>
-  {% endfor %}
+
+
+  {% if p.post_comments %}
+    {% for c in p.post_comments.order('-created') %}
+      <p class="comment">
+        <span>
+          <span class="name">{{c.owner}}</span>{{' commented "' ~ c.content ~ '"'}}
+          <a href={{'/blog/' + p.id + '/comment/delete/' ~ c.key().id()}}>Delete comment</a>
+          <a href={{'/blog/' + p.id + '/comment/edit/' ~ c.key().id()}}>Edit comment</a>
+        </span>
+      </p>
+    {% endfor %}
+  {% else %}
+    <p>There doesn't seem to be any comments here</p>
+  {% endif %}
   </div>
   <br>
   <br>
@@ -54,7 +63,7 @@
       <textarea name="content" style="max-height: 50px">{{content}}</textarea>
     </label>
 
-    <label style="font-size: 14px; margin: 5px 0 20px 0;"><input type="checkbox" name="checkbox" value="value">Post anonymous</label>
+    <label style="font-size: 14px; margin: 5px 0 20px 0;"><input type="checkbox" name="anonymous" value="anonymous">Post anonymous</label>
 
     <div class="error">{{error}}</div>
 

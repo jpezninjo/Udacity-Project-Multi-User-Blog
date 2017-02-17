@@ -1,16 +1,17 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h2>Editting post</h2>
+  <h2>Editting {%if comment%}comment{%else%}post{%endif%}</h2>
 
     <form method="post">
+      {%if not comment%}
       <label>
         <div>subject</div>
         <input class="newpost-subject" type="text" name="subject" value="{{subject}}">
       </label>
-
+      {%endif%}
       <label>
-        <div>blog</div>
+        <div>{%if comment%}comment{%else%}post{%endif%}</div>
         <textarea name="content">{{content}}</textarea>
       </label>
 

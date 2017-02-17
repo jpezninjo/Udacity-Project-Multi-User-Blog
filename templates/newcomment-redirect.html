@@ -1,6 +1,14 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h2>Thank you for your comment!</h2>
-  <a href={{link}}>Take me back</a>
+	<h2>{{content}}</h2>
+  	<button onclick="goBack()">Take me back</button>
+
+  	<h4>You may need to refresh the page for comment changes</h4>
+
+	<script>
+		function goBack() {
+	 	   window.history.back();
+		}
+	</script>
 {% endblock %}
