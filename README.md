@@ -20,7 +20,17 @@ From there, type the command to download the Python SDK.
 
 Use the gcloud project set command to link your gcloud to your online project (via id ex. "udacity-project-multi-user-blog")
 
-Directory structure
+
+###Running locally
+On a Windows 10,
+C:\Users\Chell II\AppData\Local\Google\Cloud SDK\google-cloud-sdk\bin
+contains a dev-server.py file
+You call python dev-server.py [app.yaml] file to start a server on localhost (admin at :8000, actual site at :8080)
+We freaking cheated by keeping all our code in a folder called hw4 (lol) and calling python dev-server.py ./hw4/app.yaml
+
+
+
+###Directory structure
   -static
       css files
   -templates
@@ -30,14 +40,14 @@ Directory structure
   other stuff not as important
   
   
-#app.yaml
+###app.yaml
+Contains our project info needed for the Google App Engine
 
 
-
-#blog.py
+###blog.py
 The very bottom contains the following line
-app = webapp2.WSGIApplication([('/', BlogFront),
-                               ('/welcome', Welcome),
+  app = webapp2.WSGIApplication([('/', BlogFront),
+                                 ('/welcome', Welcome),
                                
 This is your request router
 
