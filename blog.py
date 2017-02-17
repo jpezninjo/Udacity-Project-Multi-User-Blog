@@ -140,10 +140,21 @@ class Post(db.Model):
     def render(self, link_to_self = False):
         self._render_text = self.content.replace('\n', '<br>')
         self.id = str(self.key().id())
+<<<<<<< HEAD
+        return render_str("post.html", p = self,
+            upvotes = len(self.user_upvotes.split("|")) - 1 if self.user_upvotes else 0,
+            downvotes = len(self.user_downvotes.split("|")) - 1 if self.user_downvotes else 0,
+            link_to_self = link_to_self)
+
+    def render_properties(self):
+        return ('subject=%s owner=%s content=%s user_upvotes=%s user_downvotes=%s' %
+            (self.subject, self.owner, self.content, self.user_upvotes, self.user_downvotes))
+=======
         return render_str("post.html", p = self, upvotes = self.user_upvotes, downvotes = self.user_downvotes, link_to_self = link_to_self)
 
     def render_properties(self):
         return ('subject=%s owner=%s content=%s user_upvotes=%s user_downvotes=%s' % (self.subject, self.owner, self.content, self.user_upvotes, self.user_downvotes))
+>>>>>>> be9506414feabe530acffca5b5b6868bd62df5de
 
 ###Comment stuff
 def comment_key(name = 'default'):
@@ -328,6 +339,25 @@ class DeletePost(BlogHandler):
         #Get post by post_id
         key = db.Key.from_path('Post', int(post_id), parent=blog_key())
         post = db.get(key)
+<<<<<<< HEAD
+        
+        #Get post.owner
+        owner = post.owner
+
+        #Get logged in user
+        uid = self.read_secure_cookie('user_id')
+        if not uid:
+            self.render("/signup-form.html")
+            return
+        user = User.by_id(int(uid))
+        username = user.name
+
+
+        if owner != username:
+            self.render("error.html", error="you cannot perform this action")
+            return
+=======
+>>>>>>> be9506414feabe530acffca5b5b6868bd62df5de
 
         if not post:
             self.error(404)
@@ -339,14 +369,22 @@ class DeletePost(BlogHandler):
         #Delete
 
         #Profit
+<<<<<<< HEAD
+        self.render('delete-post.html', content="Are you sure you want to delete your post?", post_id = post_id)
+=======
         self.render('delete-post.html', content="Are you sure you want to delete your post?")
+>>>>>>> be9506414feabe530acffca5b5b6868bd62df5de
 
     def post(self, post_id):
         key = db.Key.from_path('Post', int(post_id), parent=blog_key())
         post = db.get(key)
         post.delete();
 
+<<<<<<< HEAD
+        self.render('delete-post.html', content="Your post has been deleted", post_id = post_id)
+=======
         self.render('delete-post.html', content="Your post has been deleted")
+>>>>>>> be9506414feabe530acffca5b5b6868bd62df5de
 
 class PauseTime(BlogHandler):
     def get(self):
@@ -357,6 +395,26 @@ class EditPost(BlogHandler):
         #Get post by post_id
         key = db.Key.from_path('Post', int(post_id), parent=blog_key())
         post = db.get(key)
+<<<<<<< HEAD
+
+        #Get post.owner
+        owner = post.owner
+
+        #Get logged in user
+        uid = self.read_secure_cookie('user_id')
+        if not uid:
+            self.render("/signup-form.html")
+            return
+        user = User.by_id(int(uid))
+        username = user.name
+
+
+        if owner != username:
+            self.render("error.html", error="you cannot edit this post")
+            return
+
+=======
+>>>>>>> be9506414feabe530acffca5b5b6868bd62df5de
         if not post:
             self.error(404)
             return
@@ -386,12 +444,23 @@ class UpvotePost(BlogHandler):
 
         #Get logged in user
         uid = self.read_secure_cookie('user_id')
+<<<<<<< HEAD
+        if not uid:
+            self.render("/signup-form.html")
+            return
+=======
+>>>>>>> be9506414feabe530acffca5b5b6868bd62df5de
         user = User.by_id(int(uid))
         username = user.name
 
         #Check user against owner
+<<<<<<< HEAD
+        # if False:
+        if owner == username:
+=======
         if False:
         # if owner == username:
+>>>>>>> be9506414feabe530acffca5b5b6868bd62df5de
             self.render("error.html", error="you cannot upvote yourself")
             return
         #Check user against post.upvotes
@@ -425,13 +494,25 @@ class DownvotePost(BlogHandler):
 
         #Get logged in user
         uid = self.read_secure_cookie('user_id')
+<<<<<<< HEAD
+        if not uid:
+            self.render("/signup-form.html")
+            return
+=======
+>>>>>>> be9506414feabe530acffca5b5b6868bd62df5de
         user = User.by_id(int(uid))
         username = user.name
 
         #Check user against owner
+<<<<<<< HEAD
+        # if False:
+        if owner == username:
+            self.render("error.html", error="you cannot downvote yourself")
+=======
         if False:
         # if owner == username:
             self.render("error.html", error="you cannot upvote yourself")
+>>>>>>> be9506414feabe530acffca5b5b6868bd62df5de
             return
         #Check user against post.upvotes
         elif username in downvotes:
@@ -456,6 +537,12 @@ class NewComment(BlogHandler):
         post = db.get(key)
 
         uid = self.read_secure_cookie('user_id')
+<<<<<<< HEAD
+        if not uid:
+            self.render("/signup-form.html")
+            return
+=======
+>>>>>>> be9506414feabe530acffca5b5b6868bd62df5de
         user = User.by_id(int(uid))
 
         anonymous = self.request.get('anonymous')
@@ -471,6 +558,38 @@ class NewComment(BlogHandler):
 
 class EditComment(BlogHandler):
     def get(self, post_id, comment_id):
+<<<<<<< HEAD
+
+        #Get post.owner
+        comment = Comment.by_id(int(comment_id))
+        owner = comment.owner
+
+        #Get logged in user
+        uid = self.read_secure_cookie('user_id')
+        if not uid:
+            self.render("/signup-form.html")
+            return
+        user = User.by_id(int(uid))
+        username = user.name
+
+        if owner != username:
+            self.render("error.html", error="you cannot edit this comment")
+            return
+
+        if not comment:
+            self.error(404)
+            return
+
+        self.render('edit-post.html', content = comment.content, error="", comment=True)
+
+    def post(self, post_id, comment_id):
+        comment = Comment.by_id(int(comment_id))
+        content = self.request.get('content')
+        comment.content = content
+        comment.put()
+        # self.render('delete-post.html', content="Your comment has been edited", post_id = post_id)
+        self.render("newcomment-redirect.html", content="Your comment has been edited.", post_id = post_id)
+=======
         #Get post by post_id
         key = db.Key.from_path('comments', int(comment_id), parent=comment_key())
         comment = db.get(key)
@@ -488,18 +607,44 @@ class EditComment(BlogHandler):
         comment.content = content
         comment.put()
         self.render("newcomment-redirect.html", content="Your comment has been edited.")
+>>>>>>> be9506414feabe530acffca5b5b6868bd62df5de
         # self.redirect("/blog/" + post_id)
 
 class DeleteComment(BlogHandler):
     def get(self, post_id, comment_id):
+<<<<<<< HEAD
+
+        #Get post.owner
+        comment = Comment.by_id(int(comment_id))
+        owner = comment.owner
+
+        #Get logged in user
+        uid = self.read_secure_cookie('user_id')
+        if not uid:
+            self.render("/signup-form.html")
+            return
+        user = User.by_id(int(uid))
+        username = user.name
+
+        if owner != username:
+            self.render("error.html", error="you cannot delete this commentif owner")
+            return
+
+=======
         key = db.Key.from_path('comments', int(comment_id), parent=comment_key())
         comment = db.get(key)
         comment = Comment.by_id(int(comment_id))
+>>>>>>> be9506414feabe530acffca5b5b6868bd62df5de
         if not comment:
             self.error(404)
             return
         comment.delete();
+<<<<<<< HEAD
+        # self.render('delete-post.html', content="Your comment has been deleted", post_id = post_id)
+        self.render("newcomment-redirect.html", content="Your comment has been deleted.", post_id = post_id)
+=======
         self.render("newcomment-redirect.html", content="Your comment has been deleted.")
+>>>>>>> be9506414feabe530acffca5b5b6868bd62df5de
         # self.redirect("/blog/" + post_id)
 
 app = webapp2.WSGIApplication([('/', BlogFront),

@@ -1,6 +1,8 @@
 # Udacity-Project-Multi-User-Blog
 
 This is my project repository for the Udacity Online Nano Degree, Intro to Backend, Multi-User Blog Project
+<<<<<<< HEAD
+=======
 
 
 
@@ -80,3 +82,4 @@ Comment system with comment-editing and deleting with server-side user validatio
 
 
 A Kickass colorschema
+>>>>>>> be9506414feabe530acffca5b5b6868bd62df5de
