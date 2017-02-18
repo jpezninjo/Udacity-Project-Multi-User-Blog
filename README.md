@@ -47,7 +47,8 @@ Contains our project info needed for the Google App Engine
 ###blog.py
 The very bottom contains the following line
 
-```app = webapp2.WSGIApplication([('/', BlogFront),
+```
+app = webapp2.WSGIApplication([('/', BlogFront),
                                  ('/welcome', Welcome),
 ```
                                
