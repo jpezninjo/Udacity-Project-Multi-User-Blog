@@ -4,10 +4,10 @@
 Everything below this line is for future me to read
 
 
-Website: https://udacity-project-user-blog.appspot.com/
+Website at: https://udacity-project-user-blog.appspot.com/
 _________________________________________________
 
-Dude congrats! You made this in under 48 hours and wrote a 575+ lined python file!
+##Dude congrats! You made this in under 48 hours and wrote a 575+ lined python file!
 
 This app was built using Python 2.7. It uses webapp2.WSGIApplication.
 It does not use Flask. It does use the Jinja2 template engine.
@@ -31,13 +31,13 @@ We freaking cheated by keeping all our code in a folder called hw4 (lol) and cal
 
 
 ###Directory structure
-  *-static
-  *   css files
-  *-templates
-  *     html forms
-  *app.yaml
-  *blog.py
-  *other stuff not as important
+*static
+  *css files
+*templates
+  *html forms
+*app.yaml
+*blog.py
+*other less important files
 
   
 ###app.yaml
@@ -52,12 +52,14 @@ The very bottom contains the following line
 This is your request router
 
 We have created a class BlogHandler which extends the webapp2.RequestHandler
+
 Every request handler is its own class with extends BlogHandler
 
 
-We have three data models: Post, User, Comment
+###Three data models: Post, User, Comment
 
 Each Post cheats by storing User.username, not the actual User object
+
 Each Post has a one-to-many relationship with Comment. This relationship is actually defined in the Comment model for some godamn reason
 
 
