@@ -71,7 +71,6 @@ We have prepped the User model with some helper functions:
     def userExists(cls, name):
     
 
-
 This site features the following:
   user account system with creation and login capabilities
   Secure password storing using the generic
